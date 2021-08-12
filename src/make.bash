@@ -65,6 +65,8 @@
 
 set -e
 
+export GOBUILDTIMELOGFILE=LogHaikuPort
+
 export GOENV=off
 unset GOBIN # Issue 14340
 unset GOFLAGS

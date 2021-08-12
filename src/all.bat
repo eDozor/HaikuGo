@@ -6,6 +6,9 @@
 
 setlocal
 
+set GOOS=haiku
+set GOBUILDTIMELOGFILE=c:\code\Haiku\log.txt
+
 if exist make.bat goto ok
 echo all.bat must be run from go\src
 :: cannot exit: would kill parent command interpreter
@@ -15,6 +18,9 @@ goto end
 set OLDPATH=%PATH%
 call make.bat --no-banner --no-local
 if %GOBUILDFAIL%==1 goto end
+
+"%GOTOOLDIR%/dist" banner
+
 call run.bat --no-rebuild --no-local
 if %GOBUILDFAIL%==1 goto end
 :: we must restore %PATH% before running "dist banner" so that the latter

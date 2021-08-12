@@ -77,6 +77,7 @@ var okgoarch = []string{
 
 // The known operating systems.
 var okgoos = []string{
+	"haiku",
 	"darwin",
 	"dragonfly",
 	"illumos",
@@ -911,7 +912,7 @@ func runInstall(pkg string, ch chan struct{}) {
 		compile = append(compile, "-symabis", symabis)
 	}
 	if goos == "android" {
-		compile = append(compile, "-shared")
+		compile = append(compile, "-shared") //slava
 	}
 
 	compile = append(compile, gofiles...)
@@ -1572,6 +1573,7 @@ var cgoEnabled = map[string]bool{
 	"plan9/amd64":     false,
 	"plan9/arm":       false,
 	"solaris/amd64":   true,
+	"haiku/amd64":     true,
 	"windows/386":     true,
 	"windows/amd64":   true,
 	"windows/arm":     false,
