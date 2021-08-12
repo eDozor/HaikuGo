@@ -1258,13 +1258,18 @@ func cmdbootstrap() {
 	defer timelog("end", "dist bootstrap")
 
 	var noBanner bool
-	var debug bool
+	var debug = true bool
 	flag.BoolVar(&rebuildall, "a", rebuildall, "rebuild all")
 	flag.BoolVar(&debug, "d", debug, "enable debugging of bootstrap process")
 	flag.BoolVar(&noBanner, "no-banner", noBanner, "do not print banner")
 
 	xflagparse(0)
 
+	debug = true
+
+	if debug {
+		fmt.Println("Debug on")
+	}
 	// Set GOPATH to an internal directory. We shouldn't actually
 	// need to store files here, since the toolchain won't
 	// depend on modules outside of vendor directories, but if
