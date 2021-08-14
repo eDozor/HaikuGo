@@ -1258,7 +1258,9 @@ func cmdbootstrap() {
 	defer timelog("end", "dist bootstrap")
 
 	var noBanner bool
-	var debug = true bool
+	// var debug = true bool
+	debug := true
+
 	flag.BoolVar(&rebuildall, "a", rebuildall, "rebuild all")
 	flag.BoolVar(&debug, "d", debug, "enable debugging of bootstrap process")
 	flag.BoolVar(&noBanner, "no-banner", noBanner, "do not print banner")

@@ -46,6 +46,7 @@ if x%4==x--no-local goto nolocal
 setlocal
 :nolocal
 
+set GOOS=haiku
 set GOENV=off
 set GOBUILDFAIL=0
 set GOFLAGS=

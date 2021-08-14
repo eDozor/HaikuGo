@@ -70,6 +70,7 @@ func Init() (*sys.Arch, ld.Arch) {
 		Netbsddynld:    "/libexec/ld.elf_so",
 		Dragonflydynld: "/usr/libexec/ld-elf.so.2",
 		Solarisdynld:   "/lib/amd64/ld.so.1",
+		Haikudynld:     "/boot/system/bin/ld",
 	}
 
 	return arch, theArch
@@ -104,7 +105,8 @@ func archinit(ctxt *ld.Link) {
 		objabi.Hnetbsd,    /* netbsd */
 		objabi.Hopenbsd,   /* openbsd */
 		objabi.Hdragonfly, /* dragonfly */
-		objabi.Hsolaris:   /* solaris */
+		objabi.Hsolaris,   /* solaris */
+                objabi.Hhaiku:     /* haiku */
 		ld.Elfinit(ctxt)
 
 		ld.HEADR = ld.ELFRESERVE

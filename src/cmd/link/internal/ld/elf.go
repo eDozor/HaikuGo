@@ -1652,6 +1652,9 @@ func asmbElf(ctxt *Link) {
 
 			case objabi.Hsolaris:
 				interpreter = thearch.Solarisdynld
+
+			case objabi.Hhaiku:
+				interpreter = thearch.Haikudynld
 			}
 		}
 
@@ -1986,6 +1989,8 @@ elfobj:
 	case objabi.Hopenbsd:
 		osabi = elf.ELFOSABI_OPENBSD
 	case objabi.Hdragonfly:
+		osabi = elf.ELFOSABI_NONE
+	case objabi.Hhaiku:
 		osabi = elf.ELFOSABI_NONE
 	}
 	eh.Ident[elf.EI_OSABI] = byte(osabi)

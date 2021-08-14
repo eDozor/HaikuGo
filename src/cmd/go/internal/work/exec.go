@@ -2508,6 +2508,9 @@ func (b *Builder) compilerCmd(compiler []string, incdir, workdir string) []strin
 		a = append(a, "-fno-common")
 	}
 
+	if goos == "haiku" {
+		a = append(a, "-Wl, -Bsymbolic")
+	}
 	return a
 }
 
@@ -3201,6 +3204,8 @@ func (b *Builder) disableBuildID(ldflags []string) []string {
 	switch cfg.Goos {
 	case "android", "dragonfly", "linux", "netbsd":
 		ldflags = append(ldflags, "-Wl,--build-id=none")
+	case "haiku":
+		ldflags = append(ldflags, "-fPIC")
 	}
 	return ldflags
 }

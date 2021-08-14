@@ -186,6 +186,7 @@ type Arch struct {
 	Openbsddynld   string
 	Dragonflydynld string
 	Solarisdynld   string
+        Haikudynld     string
 
 	// Empty spaces between codeblocks will be padded with this value.
 	// For example an architecture might want to pad with a trap instruction to
