@@ -912,7 +912,7 @@ func runInstall(pkg string, ch chan struct{}) {
 		compile = append(compile, "-symabis", symabis)
 	}
 	if goos == "android" {
-		compile = append(compile, "-shared") //slava
+		compile = append(compile, "-shared")
 	}
 
 	compile = append(compile, gofiles...)
