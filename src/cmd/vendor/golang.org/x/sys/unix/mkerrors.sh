@@ -405,7 +405,9 @@ includes='
 #include <netinet/ip6.h>
 #include <netinet/tcp.h>
 #include <errno.h>
+#if !defined(__HAIKU__)
 #include <sys/signal.h>
+#endif
 #include <signal.h>
 #include <sys/resource.h>
 #include <time.h>
@@ -611,7 +613,15 @@ cat _error.out | grep -vf _error.grep | grep -vf _signal.grep
 echo
 echo '// Errors'
 echo 'const ('
-cat _error.out | grep -f _error.grep | sed 's/=\(.*\)/= syscall.Errno(\1)/'
+#cat _error.out | grep -f _error.grep | sed 's/=\(.*\)/= syscall.Errno(\1)/'
+
+if [ "$(uname)" == "Haiku" ]
+then
+	cat _error.out | grep -f _error.grep | sed 's/=\(.*\)/= syscall.Errno(\1 \& 0xffffffff)/'
+else
+	cat _error.out | grep -f _error.grep | sed 's/=\(.*\)/= syscall.Errno(\1)/'
+fi
+
 echo ')'
 
 echo
@@ -687,8 +697,15 @@ main(void)
 		// lowercase first letter: Bad -> bad, but STREAM -> STREAM.
 		if(A <= buf[0] && buf[0] <= Z && a <= buf[1] && buf[1] <= z)
 			buf[0] += a - A;
+
+#		printf("\t{ %d, \"%s\", \"%s\" },\n", e, errors[i].name, buf);
+#if defined(__HAIKU__)
+		printf("\t%d: \"%s\",\n", e == 0 ? 0 : e+0x80000001, errors[i].name, buf);
+#else
 		printf("\t{ %d, \"%s\", \"%s\" },\n", e, errors[i].name, buf);
-	}
+#               printf("\t%d: \"%s\",\n", e, buf);
+#endif
+        }
 	printf("}\n\n");
 
 	printf("\n\n// Signal table\n");

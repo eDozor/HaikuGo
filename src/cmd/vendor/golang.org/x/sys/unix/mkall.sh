@@ -196,7 +196,7 @@ solaris_amd64)
 	mktypes="GOARCH=$GOARCH go tool cgo -godefs"
 	;;
 haiku_amd64)
-	mksyscall="go run mksyscall_solaris.go"
+	mksyscall="go run mksyscall_haiku.go"
 	mkerrors="$mkerrors -m64"
 	mksysnum=
 	mktypes="GOARCH=$GOARCH go tool cgo -godefs"
