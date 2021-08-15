@@ -698,12 +698,10 @@ main(void)
 		if(A <= buf[0] && buf[0] <= Z && a <= buf[1] && buf[1] <= z)
 			buf[0] += a - A;
 
-#		printf("\t{ %d, \"%s\", \"%s\" },\n", e, errors[i].name, buf);
 #if defined(__HAIKU__)
 		printf("\t%d: \"%s\",\n", e == 0 ? 0 : e+0x80000001, errors[i].name, buf);
 #else
 		printf("\t{ %d, \"%s\", \"%s\" },\n", e, errors[i].name, buf);
-#               printf("\t%d: \"%s\",\n", e, buf);
 #endif
         }
 	printf("}\n\n");
