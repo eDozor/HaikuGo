@@ -24,3 +24,4 @@ const GoosPlan9 = 0
 const GoosSolaris = 1
 const GoosWindows = 0
 const GoosZos = 0
+const GoosHaiku = 0
